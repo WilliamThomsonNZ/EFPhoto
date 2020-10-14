@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,4 +12,206 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
+  font-family: "Abhaya Libre", serif;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+header {
+  width: 90%;
+  margin: 0 auto;
+  height: 15vh;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.instaLink {
+  color: #fff;
+  font-size: 3rem;
+}
+
+.title {
+  font-weight: normal;
+  color: #fff;
+  letter-spacing: 5px;
+}
+.menuBox {
+  width: 75px;
+  height: 20px;
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  width: 100%;
+  height: 1.5px;
+  background: #fff;
+}
+#topLine {
+  top: 0;
+  left: 0;
+}
+#bottomLine {
+  bottom: 0;
+  right: 0;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  left: 5%;
+  color: #b5b5b5;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.emailContainer {
+  position: relative;
+}
+
+.email {
+  position: absolute;
+  right: -2%;
+  top: 25%;
+  font-weight: normal;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  transform: rotate(270deg);
+  margin-bottom: 10rem;
+}
+
+.email::after {
+  position: absolute;
+  bottom: 50%;
+  left: -40%;
+  content: "";
+  height: 1px;
+  width: 5rem;
+  background-color: #b5b5b5;
+}
+
+main {
+  position: absolute;
+  width: 800px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.currentStyleTitle {
+  font-weight: normal;
+  font-size: 12rem;
+  overflow: hidden;
+  letter-spacing: 6px;
+  align-self: flex-end;
+  bottom: 0;
+}
+
+.scrollIndicate {
+  width: 2px;
+  margin-bottom: 4rem;
+}
+.bar {
+  height: 4rem;
+  width: 100%;
+  background: #b5b5b5;
+  margin: 1rem 0;
+}
+.insideContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.btns {
+  position: absolute;
+  top: 50%;
+  color: #fff;
+  font-weight: normal;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  transition: all 0.5s ease;
+  background: none;
+  font-family: "Abhaya Libre", serif;
+  border: none;
+}
+.prevBtn {
+  left: 0;
+}
+.prevBtn:hover {
+  cursor: pointer;
+}
+.prevBtn::after {
+  content: "";
+  position: absolute;
+  right: -3.5rem;
+  background-color: #fff;
+  top: 50%;
+  height: 1px;
+  width: 3rem;
+  transition: all 0.5s ease;
+}
+.prevBtn:hover:after {
+  right: 4rem;
+}
+.nextBtn {
+  right: 0;
+}
+.nextBtn:hover {
+  cursor: pointer;
+}
+.nextBtn::after {
+  content: "";
+  position: absolute;
+  left: -3.5rem;
+  background-color: #fff;
+  top: 50%;
+  height: 1px;
+  width: 3rem;
+  transition: all 0.5s ease;
+}
+.nextBtn:hover:after {
+  left: 4rem;
+}
+.cards {
+  position: absolute;
+  width: 50%;
+  height: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.cardBox {
+}
+.photoCard {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease;
+}
+.card1 {
+  background-color: purple;
+  transform: rotate(10deg);
+  position: absolute;
+}
+.card2 {
+  background-color: green;
+  transform: rotate(-10deg);
+  position: absolute;
+}
+.card3 {
+  background-color: teal;
+  transform: rotate(15deg);
+  position: absolute;
+}
+.card4 {
+  background-color: pink;
+  transform: rotate(-5deg);
+  position: absolute;
 }
