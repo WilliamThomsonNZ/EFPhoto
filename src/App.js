@@ -1,24 +1,16 @@
-import React, { useRef, useState } from "react";
-import { moveMultiArr, moveMultiIndex } from "move-position";
+import React, { useEffect, useState } from "react";
+import { moveMultiIndex } from "move-position";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import PhotoCard from "./components/PhotoCard";
+import { UI } from "./components/UI";
+import { PhotoCards, ScrollBars } from "./components/ComponentArrays";
 import "./App.css";
-import { faHandHolding } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
-  const [background, setBackground] = useState(
-    "https://source.unsplash.com/random/1600x900"
-  );
-  const [photoCardArr, setPhotoCardArr] = useState([
-    <PhotoCard rotate={"10deg"} bg={"purple"} key={1} />,
-    <PhotoCard rotate={"-10deg"} bg={"green"} key={2} />,
-    <PhotoCard rotate={"15deg"} bg={"teal"} key={3} />,
-    <PhotoCard rotate={"-5deg"} bg={"pink"} key={4} />,
-  ]);
-
-  const titles = ["SURF", "SNOW", "TRAVEL", "BRAND"];
-  const [title, setTitle] = useState(titles[0]);
+  const [photoCardArr, setPhotoCardArr] = useState(PhotoCards);
+  const [scrollBarArr, setScrollBarArr] = useState(ScrollBars);
+  const [count, setCount] = useState(0);
+  const [ui, setUi] = useState(UI[count]);
 
   const handleNext = () => {
     const movingMap = [
@@ -27,9 +19,18 @@ function App() {
       { from: 2, to: 3 },
       { from: 3, to: 0 },
     ];
-
+    if (count >= 3) {
+      setCount(0);
+    } else {
+      setCount((prevCount) => prevCount + 1);
+    }
+    console.log(count);
     setPhotoCardArr(moveMultiIndex(photoCardArr, movingMap));
   };
+  useEffect(() => {
+    setUi(UI[count]);
+  }, [count]);
+
   const handlePrev = () => {
     const movingMap = [
       { from: 0, to: 3 },
@@ -37,14 +38,18 @@ function App() {
       { from: 2, to: 1 },
       { from: 3, to: 2 },
     ];
+    if (count <= 0) {
+      setCount(3);
+    } else {
+      setCount((prevCount) => prevCount - 1);
+    }
+    console.log(scrollBarArr);
     setPhotoCardArr(moveMultiIndex(photoCardArr, movingMap));
+    setScrollBarArr(moveMultiIndex(scrollBarArr, movingMap));
   };
 
   return (
-    <div
-      className="background"
-      style={{ backgroundImage: `url(${background})` }}
-    >
+    <div className="background" style={{ backgroundImage: `url(${ui.bg})` }}>
       <div className="overlay">
         <header>
           <a href="https://instagram.com" className="instaLink">
@@ -68,14 +73,9 @@ function App() {
           </div>
         </main>
         <footer>
-          <div className="scrollIndicate">
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </div>
+          <div className="scrollIndicate">{ScrollBars}</div>
 
-          <h2 className="currentStyleTitle">{title}</h2>
+          <h2 className="currentStyleTitle">{ui.title}</h2>
 
           <div className="emailContianer">
             <h3 className="email">JohnDoe@gmail.com</h3>
