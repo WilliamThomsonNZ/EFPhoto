@@ -6,17 +6,26 @@ import "./App.css";
 import IntroAnimation from "./components/IntroAnimation";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Album from "./components/Album";
-// import AlbumContext from "./contexts/AlbumContext";
+import AlbumContext from "./contexts/AlbumContext";
+import { useLocalStorage } from "./components/useLocalStorage";
 
 function App() {
   const [count, setCount] = useState(0);
   const [ui, setUi] = useState(UI[count]);
-  const [album, setAlbum] = useState({});
+  const [album, setAlbum] = useLocalStorage({ id: "surf" }, "album");
+  const [albumActive, setAlbumActive] = useState(false);
+
+  const handleAlbumChange = (value) => {
+    setAlbum(value);
+    setAlbumActive((prevState) => !prevState);
+  };
+
+  const bgIMG = { backgroundImage: `url(${ui.bg})` };
+  const bgColor = { backgroundColor: ui.bgC };
   return (
-    // <AlbumContext.provider value={{ album, setAlbum }}>
-    <div className="background" style={{ backgroundImage: `url(${ui.bg})` }}>
+    <div className="background" style={!albumActive ? bgIMG : bgColor}>
       {/* <IntroAnimation /> */}
-      <div className="overlay">
+      <div className={!albumActive ? "overlay" : null}>
         <Header />
         <Router>
           <Switch>
@@ -24,19 +33,26 @@ function App() {
               exact
               path="/"
               render={() => (
-                <Main ui={ui} setUi={setUi} setCount={setCount} count={count} />
+                <Main
+                  uiProp={{ ui, setUi }}
+                  countProp={{ count, setCount }}
+                  album={album}
+                  handleAlbumChange={handleAlbumChange}
+                  albumActive={albumActive}
+                  setAlbumActive={(value) => {
+                    setAlbumActive(value);
+                  }}
+                />
               )}
             />
             <Route
-              exact
               path="/album"
-              render={() => <Album albumType={album} />}
+              render={() => <Album album={album} albumActive={albumActive} />}
             />
           </Switch>
         </Router>
       </div>
     </div>
-    // </AlbumContext.provider>
   );
 }
 

@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-import AlbumContext from "../contexts/AlbumContext";
+import React from "react";
+import { Link } from "react-router-dom";
 import { AlbumType } from "./ComponentArrays";
 
-function PhotoCard({ bg, rotate, id }) {
-  // const { album, setAlbum } = useContext(AlbumContext);
+function PhotoCard({ bg, rotate, id, handleAlbumChange }) {
   const style = {
     background: bg,
     transform: `rotate(${rotate})`,
@@ -11,15 +10,18 @@ function PhotoCard({ bg, rotate, id }) {
 
   const handleClick = (e) => {
     const targetAlbum = e.target.id;
-    const selectedAlbum = AlbumType.find((id) => id === targetAlbum);
+    const selectedAlbum = AlbumType.find((type) => type.id === targetAlbum);
+    handleAlbumChange(selectedAlbum);
   };
   return (
-    <div
-      style={style}
-      className="photoCard"
-      onClick={handleClick}
-      id={id}
-    ></div>
+    <Link to="/album">
+      <div
+        style={style}
+        className="photoCard"
+        onClick={handleClick}
+        id={id}
+      ></div>
+    </Link>
   );
 }
 

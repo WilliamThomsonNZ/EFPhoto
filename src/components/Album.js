@@ -1,9 +1,10 @@
 import React from "react";
 
-function Album({ albumType }) {
+function Album({ album }) {
+  console.log(album);
   return (
     <div>
-      <h2>{albumType}</h2>
+      <h2>{album.id}</h2>
     </div>
   );
 }

@@ -1,15 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { PhotoCards, ScrollBars } from "./ComponentArrays";
+import { ScrollBars } from "./ComponentArrays";
 import { UI } from "./UI";
 import { moveMultiIndex } from "move-position";
 import Footer from "./Footer";
+import PhotoCard from "./PhotoCard";
 
-function Main({ count, setCount, setUi, ui }) {
-  const [photoCardArr, setPhotoCardArr] = useState(PhotoCards);
+const photoCards = [
+  { rotate: "10deg", bg: "purple", id: "brand" },
+  { rotate: "-10deg", bg: "green", id: "travel" },
+  { rotate: "15deg", bg: "teal", id: "snow" },
+  { rotate: "-5deg", bg: "pink", id: "surf" },
+];
+
+function Main({
+  countProp,
+  uiProp,
+  album,
+  handleAlbumChange,
+  albumActive,
+  setAlbumActive,
+}) {
+  const { count, setCount } = countProp;
+  const { ui, setUi } = uiProp;
+  const [photoCardArr, setPhotoCardArr] = useState(photoCards);
   const [scrollBarArr, setScrollBarArr] = useState(ScrollBars);
   useEffect(() => {
     setUi(UI[count]);
   }, [count]);
+
+  useEffect(() => {
+    setCount(0);
+    setAlbumActive(false);
+  }, []);
 
   const handleNext = () => {
     const movingMap = [
@@ -47,7 +69,21 @@ function Main({ count, setCount, setUi, ui }) {
           <button className="prevBtn btns" onClick={handlePrev}>
             Prev
           </button>
-          <div className="cards">{photoCardArr}</div>
+          <div className="cards">
+            {photoCardArr.map((card, index) => {
+              return (
+                <PhotoCard
+                  rotate={card.rotate}
+                  bg={card.bg}
+                  key={index}
+                  id={card.id}
+                  handleAlbumChange={handleAlbumChange}
+                  album={album}
+                  albumActive={albumActive}
+                />
+              );
+            })}
+          </div>
           <button className="nextBtn btns" onClick={handleNext}>
             Next
           </button>
