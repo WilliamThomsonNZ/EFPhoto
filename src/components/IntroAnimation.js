@@ -1,12 +1,18 @@
 import { faDivide } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import CountTo from "react-count-to";
 
 function IntroAnimation() {
+  const fn = (value) => <span>%{value}</span>;
   return (
     <div className="introAnimation">
       <div className="introText">
-        <span>This is going to be a</span>
-        <span> Great animation.</span>
+        <h3>Just digging up my albums</h3>
+      </div>
+      <div className="counter">
+        <CountTo to={100} speed={1000}>
+          {fn}
+        </CountTo>
       </div>
     </div>
   );

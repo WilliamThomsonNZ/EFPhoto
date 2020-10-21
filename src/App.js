@@ -20,8 +20,8 @@ function App() {
     setAlbumActive((prevState) => !prevState);
   };
 
-  const bgIMG = { backgroundImage: `url(${ui.bg})` };
-  const bgColor = { backgroundColor: ui.bgC };
+  const bgIMG = { backgroundImage: `url(${ui.bg})`, height: "100vh" };
+  const bgColor = { backgroundColor: ui.bgC, height: "200vh" };
   return (
     <div className="background" style={!albumActive ? bgIMG : bgColor}>
       {/* <IntroAnimation /> */}

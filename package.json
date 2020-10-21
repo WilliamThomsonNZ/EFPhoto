@@ -13,6 +13,7 @@
     "gsap": "^3.5.1",
     "move-position": "^1.0.3",
     "react": "^16.13.1",
+    "react-count-to": "^0.12.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"

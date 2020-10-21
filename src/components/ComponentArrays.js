@@ -1,5 +1,5 @@
 import React from "react";
-
+import { SnowArray } from "../photos/SnowArray";
 import ScrollBar from "./ScrollBar";
 
 export const ScrollBars = [
@@ -11,7 +11,7 @@ export const ScrollBars = [
 
 export const AlbumType = [
   { bg: "blue", id: "surf" },
-  { bg: "green", id: "snow" },
+  { bg: "green", id: "snow", photos: [...SnowArray] },
   { bg: "yellow", id: "travel" },
   { bg: "purple", id: "brand" },
 ];

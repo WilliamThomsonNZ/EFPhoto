@@ -9,7 +9,6 @@
 }
 
 .background {
-  height: 100vh;
   width: 100vw;
   background-size: cover;
   background-position: center;
@@ -74,6 +73,10 @@ footer {
   justify-content: space-between;
   align-items: flex-end;
 }
+.titleContainer {
+  overflow: hidden;
+  height: 200px;
+}
 .emailContainer {
   position: relative;
 }
@@ -109,12 +112,14 @@ main {
 }
 .currentStyleTitle {
   font-weight: normal;
-  font-size: 12rem;
+  font-size: 15rem;
   overflow: hidden;
   letter-spacing: 6px;
   align-self: flex-end;
   bottom: 0;
   color: #5e5e5e;
+
+  overflow: hidden;
 }
 
 .scrollIndicate {
@@ -228,7 +233,7 @@ main {
 .introAnimation {
   height: 100vh;
   width: 100vw;
-  background-color: black;
+  background-color: #f2f2f2;
   position: absolute;
   top: 0;
   left: 0;
@@ -236,13 +241,75 @@ main {
 }
 .introText {
   position: absolute;
-  left: 20%;
-  top: 30%;
+  color: #5e5e5e;
+
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+}
+.introText h3 {
+  font-weight: normal;
+  font-size: 1.8rem;
 }
 
-.introAnimation span {
-  display: block;
-  color: #fff;
-  font-family: "Playfair Display", serif;
-  font-size: 5rem;
+.counter {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  font-size: 3rem;
+  color: #5e5e5e;
+}
+
+/* -------------------------------------------album-------------------------------------- */
+.backButton {
+}
+
+.albumBody {
+  width: 70%;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.albumTitle {
+  text-align: center;
+  font-weight: normal;
+  font-size: 12rem;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: #f1f1f1;
+}
+
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+
+  gap: 5rem;
+  height: 100%;
+  width: 100%;
+  grid-template-areas:
+    "numberZero two four"
+    "numberZero two four"
+    "one two five"
+    "one three five"
+    "one three five";
+}
+
+.albumPhoto0 {
+  grid-area: numberZero;
+}
+.albumPhoto1 {
+  grid-area: one;
+}
+.albumPhoto2 {
+  grid-area: two;
+}
+.albumPhoto3 {
+  grid-area: three;
+}
+.albumPhoto4 {
+  grid-area: four;
+}
+.albumPhoto5 {
+  grid-area: five;
 }
