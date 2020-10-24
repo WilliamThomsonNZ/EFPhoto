@@ -1,13 +1,12 @@
 import React from "react";
-import { ScrollBars } from "./ComponentArrays";
-function Footer({ ui }) {
+import AlbumCount from "./AlbumCount";
+function Footer({ ui, count }) {
   return (
     <footer>
-      <div className="scrollIndicate">{ScrollBars}</div>
+      <AlbumCount count={count} />
       <div className="titleContainer">
         <h2 className="currentStyleTitle">{ui.title}</h2>
       </div>
-
       <div className="emailContianer">
         <h3 className="email">JohnDoe@gmail.com</h3>
       </div>

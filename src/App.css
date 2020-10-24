@@ -10,11 +10,11 @@
 
 .background {
   width: 100vw;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
+  background-repeat: repeat;
   position: relative;
   font-family: "Abhaya Libre", serif;
+  transition: ease all 0.5s;
 }
 .overlay {
   width: 100%;
@@ -92,16 +92,6 @@ footer {
   margin-bottom: 10rem;
 }
 
-.email::after {
-  position: absolute;
-  bottom: 50%;
-  left: -40%;
-  content: "";
-  height: 1px;
-  width: 5rem;
-  background-color: #b5b5b5;
-}
-
 main {
   position: absolute;
   width: 800px;
@@ -111,15 +101,16 @@ main {
   transform: translate(-50%, -50%);
 }
 .currentStyleTitle {
+  display: inline-block;
   font-weight: normal;
   font-size: 15rem;
   overflow: hidden;
   letter-spacing: 6px;
   align-self: flex-end;
-  bottom: 0;
-  color: #5e5e5e;
-
+  color: #f1f1f1;
+  line-height: 0.7;
   overflow: hidden;
+  margin-top: 4rem;
 }
 
 .scrollIndicate {
@@ -148,10 +139,13 @@ main {
   font-weight: normal;
   font-size: 1.5rem;
   letter-spacing: 3px;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   background: none;
   font-family: "Abhaya Libre", serif;
   border: none;
+}
+.btns:focus {
+  outline: none;
 }
 .prevBtn {
   left: 0;
@@ -195,7 +189,7 @@ main {
   position: absolute;
   width: 50%;
   height: 70%;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -203,29 +197,41 @@ main {
 }
 .photoCard {
   position: absolute;
-  width: 100%;
+  right: 10%;
+  width: 80%;
   height: 100%;
-  transition: all 1s ease;
+  background-position: center;
+  background-size: cover;
+  transition: all 1s ease-in-out;
 }
 .card1 {
-  background-color: purple;
   transform: rotate(10deg);
   position: absolute;
 }
 .card2 {
-  background-color: green;
   transform: rotate(-10deg);
   position: absolute;
 }
 .card3 {
-  background-color: teal;
   transform: rotate(15deg);
   position: absolute;
 }
 .card4 {
-  background-color: pink;
   transform: rotate(-5deg);
   position: absolute;
+}
+.albumCount {
+  margin-bottom: 5rem;
+  color: #f1f1f1;
+}
+.albumCount h3 {
+  font-weight: normal;
+}
+.progressBar {
+  height: 5rem;
+  background: grey;
+  width: 3px;
+  margin: 0 auto;
 }
 
 /* -----------------------------------------------IntroAnimation--------------------------------- */

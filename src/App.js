@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import { UI } from "./components/UI";
 import "./App.css";
-import IntroAnimation from "./components/IntroAnimation";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Album from "./components/Album";
-import AlbumContext from "./contexts/AlbumContext";
-import { useLocalStorage } from "./components/useLocalStorage";
+import { useLocalStorage } from "./utils/useLocalStorage";
+import { AnimatePresence } from "framer-motion";
+import backgroundTexture from "./backgrounds/texture.png";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -20,38 +25,50 @@ function App() {
     setAlbumActive((prevState) => !prevState);
   };
 
-  const bgIMG = { backgroundImage: `url(${ui.bg})`, height: "100vh" };
-  const bgColor = { backgroundColor: ui.bgC, height: "200vh" };
+  const bgAlbum = {
+    backgroundColor: ui.bgC,
+    backgroundImage: `url(${backgroundTexture})`,
+    height: "200vh",
+    overflowX: "hidden",
+    overflowY: "show",
+  };
+  const bgMain = {
+    backgroundColor: ui.bgC,
+    backgroundImage: `url(${backgroundTexture})`,
+    height: "100vh",
+    overflow: "hidden",
+  };
+  const location = useLocation();
   return (
-    <div className="background" style={!albumActive ? bgIMG : bgColor}>
+    <div className="background" style={bgMain}>
       {/* <IntroAnimation /> */}
-      <div className={!albumActive ? "overlay" : null}>
-        <Header />
-        <Router>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <Main
-                  uiProp={{ ui, setUi }}
-                  countProp={{ count, setCount }}
-                  album={album}
-                  handleAlbumChange={handleAlbumChange}
-                  albumActive={albumActive}
-                  setAlbumActive={(value) => {
-                    setAlbumActive(value);
-                  }}
-                />
-              )}
-            />
-            <Route
-              path="/album"
-              render={() => <Album album={album} albumActive={albumActive} />}
-            />
-          </Switch>
-        </Router>
-      </div>
+
+      <Header />
+
+      <AnimatePresence initial={false} exitBeforeEnter>
+        <Switch location={location} key={location.key}>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Main
+                uiProp={{ ui, setUi }}
+                countProp={{ count, setCount }}
+                album={album}
+                handleAlbumChange={handleAlbumChange}
+                albumActive={albumActive}
+                setAlbumActive={(value) => {
+                  setAlbumActive(value);
+                }}
+              />
+            )}
+          />
+          <Route
+            path="/album"
+            render={() => <Album album={album} albumActive={albumActive} />}
+          />
+        </Switch>
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { ScrollBars } from "./ComponentArrays";
+import { ScrollBars } from "../utils/ComponentArrays";
 import { UI } from "./UI";
 import { moveMultiIndex } from "move-position";
 import Footer from "./Footer";
 import PhotoCard from "./PhotoCard";
 import { TweenMax, Power3, TimelineLite } from "gsap";
+import { MainPhotos } from "../photos/MainPhotos";
+import { motion } from "framer-motion";
+import myTween from "../utils/gsap";
 
 const photoCards = [
-  { rotate: "10deg", bg: "purple", id: "brand" },
-  { rotate: "-10deg", bg: "green", id: "travel" },
-  { rotate: "15deg", bg: "teal", id: "snow" },
-  { rotate: "-5deg", bg: "pink", id: "surf" },
+  { rotate: "7deg", bg: MainPhotos[2], id: "brand", current: "hello" },
+  { rotate: "-7deg", bg: MainPhotos[3], id: "travel", current: "current" },
+  { rotate: "12deg", bg: MainPhotos[1], id: "snow", current: "current" },
+  { rotate: "-3deg", bg: MainPhotos[0], id: "surf", current: "currentCard" },
 ];
 
 function Main({
@@ -24,12 +27,11 @@ function Main({
   const { count, setCount } = countProp;
   const { ui, setUi } = uiProp;
   const [photoCardArr, setPhotoCardArr] = useState(photoCards);
-  const [scrollBarArr, setScrollBarArr] = useState(ScrollBars);
   var myTween = new TimelineLite({ paused: true });
 
   useEffect(() => {
     setUi(UI[count]);
-  }, [count]);
+  }, [count, setUi]);
 
   useEffect(() => {
     setCount(0);
@@ -40,13 +42,16 @@ function Main({
     myTween
       .to(".currentStyleTitle", {
         y: -200,
-        duration: 0.5,
+        opacity: 0,
+        duration: 0.45,
       })
+
       .to(".currentStyleTitle", {
-        y: 300,
+        y: 200,
         duration: 0.0001,
       })
       .play();
+
     const movingMap = [
       { from: 0, to: 1 },
       { from: 1, to: 2 },
@@ -60,28 +65,23 @@ function Main({
         setCount((prevCount) => prevCount + 1);
       }
     }, 700);
-
     setPhotoCardArr(moveMultiIndex(photoCardArr, movingMap));
 
-    TweenMax.fromTo(
-      ".background",
-      { backgroundColor: "rgba(0,0,0,0)" },
-      { backgroundColor: "rgba(0,0,0,0.8)", duration: 1, delay: 1 }
-    );
     TweenMax.to(".currentStyleTitle", {
       y: 0,
-      duration: 0.5,
-      delay: 0.7,
+      opacity: 1,
+      duration: 0.45,
+      delay: 0.65,
     });
   };
   const handlePrev = () => {
     myTween
       .to(".currentStyleTitle", {
         y: -200,
-        duration: 0.5,
+        duration: 0.45,
       })
       .to(".currentStyleTitle", {
-        y: 300,
+        y: 200,
         duration: 0.0001,
       })
       .play();
@@ -103,18 +103,22 @@ function Main({
 
     TweenMax.to(".currentStyleTitle", {
       y: 0,
-      duration: 0.5,
-      delay: 0.7,
+      duration: 0.45,
+      delay: 0.65,
     });
   };
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 1, duration: 0.8, ease: "easeInOut" }}
+    >
       <main>
         <div className="insideContainer">
           <button className="prevBtn btns" onClick={handlePrev}>
             Prev
           </button>
-          <div className="cards">
+          <motion.div className="cards">
             {photoCardArr.map((card, index) => {
               return (
                 <PhotoCard
@@ -125,17 +129,18 @@ function Main({
                   handleAlbumChange={handleAlbumChange}
                   album={album}
                   albumActive={albumActive}
+                  current={card.current}
                 />
               );
             })}
-          </div>
+          </motion.div>
           <button className="nextBtn btns" onClick={handleNext}>
             Next
           </button>
         </div>
       </main>
-      <Footer ui={ui} />
-    </div>
+      <Footer ui={ui} count={count} />
+    </motion.div>
   );
 }
 
