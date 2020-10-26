@@ -1,18 +1,37 @@
-import { faDivide } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
-import CountTo from "react-count-to";
+import { TimelineLite, TweenMax } from "gsap";
 
 function IntroAnimation() {
-  const fn = (value) => <span>%{value}</span>;
+  var myTween = new TimelineLite({ paused: true });
+
+  useEffect(() => {
+    myTween
+      .fromTo(
+        ".introTextH3",
+        {
+          y: 30,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          delay: 1,
+        }
+      )
+      .to(".introAnimation", {
+        opacity: 0,
+        duration: 0.7,
+        display: "none",
+        delay: 1.8,
+      })
+      .play();
+  }, []);
+
   return (
     <div className="introAnimation">
       <div className="introText">
-        <h3>Just digging up my albums</h3>
-      </div>
-      <div className="counter">
-        <CountTo to={100} speed={1000}>
-          {fn}
-        </CountTo>
+        <h3 className="introTextH3">Just digging out my albums</h3>
       </div>
     </div>
   );

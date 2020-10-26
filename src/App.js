@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import { UI } from "./components/UI";
@@ -13,6 +13,7 @@ import Album from "./components/Album";
 import { useLocalStorage } from "./utils/useLocalStorage";
 import { AnimatePresence } from "framer-motion";
 import backgroundTexture from "./backgrounds/texture.png";
+import IntroAnimation from "./components/IntroAnimation";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -38,13 +39,18 @@ function App() {
     height: "100vh",
     overflow: "hidden",
   };
+  const [intro, setIntro] = useLocalStorage(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIntro(false);
+    }, 3000);
+  }, [intro]);
   const location = useLocation();
   return (
     <div className="background" style={bgMain}>
-      {/* <IntroAnimation /> */}
-
+      {" "}
+      <IntroAnimation />
       <Header />
-
       <AnimatePresence initial={false} exitBeforeEnter>
         <Switch location={location} key={location.key}>
           <Route

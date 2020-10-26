@@ -8,6 +8,8 @@ import { TweenMax, Power3, TimelineLite } from "gsap";
 import { MainPhotos } from "../photos/MainPhotos";
 import { motion } from "framer-motion";
 import myTween from "../utils/gsap";
+import IntroAnimation from "./IntroAnimation";
+import { useLocalStorage } from "../utils/useLocalStorage";
 
 const photoCards = [
   { rotate: "7deg", bg: MainPhotos[2], id: "brand", current: "hello" },
@@ -107,18 +109,34 @@ function Main({
       delay: 0.65,
     });
   };
+
   return (
     <motion.div
-      initial={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ delay: 1, duration: 0.8, ease: "easeInOut" }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      key="main"
     >
       <main>
         <div className="insideContainer">
-          <button className="prevBtn btns" onClick={handlePrev}>
+          <motion.button
+            className="prevBtn btns"
+            onClick={handlePrev}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
             Prev
-          </button>
-          <motion.div className="cards">
+          </motion.button>
+          <motion.div
+            className="cards"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+          >
             {photoCardArr.map((card, index) => {
               return (
                 <PhotoCard
@@ -134,9 +152,16 @@ function Main({
               );
             })}
           </motion.div>
-          <button className="nextBtn btns" onClick={handleNext}>
+          <motion.button
+            className="nextBtn btns"
+            onClick={handleNext}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
             Next
-          </button>
+          </motion.button>
         </div>
       </main>
       <Footer ui={ui} count={count} />

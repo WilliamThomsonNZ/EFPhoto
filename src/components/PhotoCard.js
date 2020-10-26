@@ -16,6 +16,7 @@ function PhotoCard({ bg, rotate, id, handleAlbumChange, current }) {
     handleAlbumChange(selectedAlbum);
     setSelected(true);
   };
+
   return (
     <Link to="/album">
       <div

@@ -8,7 +8,7 @@ function Header() {
       <a href="https://instagram.com" className="instaLink">
         <FontAwesomeIcon icon={faInstagram} />
       </a>
-      <h1 className="title">John Doe Photography</h1>
+      <h1 className="title">Erin Fleming Photography</h1>
       <div className="menuBox" tabIndex="0">
         <div className="line" id="topLine"></div>
         <div className="line" id="bottomLine"></div>
