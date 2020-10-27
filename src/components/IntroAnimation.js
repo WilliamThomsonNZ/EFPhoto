@@ -15,8 +15,8 @@ function IntroAnimation() {
         {
           y: 0,
           opacity: 1,
-          duration: 1,
-          delay: 1,
+          duration: 0.5,
+          delay: 1.5,
         }
       )
       .to(".introAnimation", {

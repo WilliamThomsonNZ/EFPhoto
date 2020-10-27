@@ -13,7 +13,10 @@ function PhotoCard({ bg, rotate, id, handleAlbumChange, current }) {
   const handleClick = (e) => {
     const targetAlbum = e.target.id;
     const selectedAlbum = AlbumType.find((type) => type.id === targetAlbum);
-    handleAlbumChange(selectedAlbum);
+    setTimeout(() => {
+      handleAlbumChange(selectedAlbum);
+    }, 1000);
+
     setSelected(true);
   };
 

@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import myTween from "../utils/gsap";
 import IntroAnimation from "./IntroAnimation";
 import { useLocalStorage } from "../utils/useLocalStorage";
+import { debounce } from "../utils/debounce";
 
 const photoCards = [
   { rotate: "7deg", bg: MainPhotos[2], id: "brand", current: "hello" },
@@ -45,7 +46,7 @@ function Main({
       .to(".currentStyleTitle", {
         y: -200,
         opacity: 0,
-        duration: 0.45,
+        duration: 0.4,
       })
 
       .to(".currentStyleTitle", {
@@ -66,7 +67,7 @@ function Main({
       } else {
         setCount((prevCount) => prevCount + 1);
       }
-    }, 700);
+    }, 300);
     setPhotoCardArr(moveMultiIndex(photoCardArr, movingMap));
 
     TweenMax.to(".currentStyleTitle", {
@@ -80,10 +81,11 @@ function Main({
     myTween
       .to(".currentStyleTitle", {
         y: -200,
-        duration: 0.45,
+        opacity: 0,
+        duration: 0.4,
       })
       .to(".currentStyleTitle", {
-        y: 200,
+        y: 300,
         duration: 0.0001,
       })
       .play();
@@ -100,11 +102,12 @@ function Main({
       } else {
         setCount((prevCount) => prevCount - 1);
       }
-    }, 700);
+    }, 300);
     setPhotoCardArr(moveMultiIndex(photoCardArr, movingMap));
 
     TweenMax.to(".currentStyleTitle", {
       y: 0,
+      opacity: 1,
       duration: 0.45,
       delay: 0.65,
     });
@@ -122,7 +125,7 @@ function Main({
         <div className="insideContainer">
           <motion.button
             className="prevBtn btns"
-            onClick={handlePrev}
+            onClick={debounce(handlePrev, 350)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -154,7 +157,7 @@ function Main({
           </motion.div>
           <motion.button
             className="nextBtn btns"
-            onClick={handleNext}
+            onClick={debounce(handleNext, 350)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

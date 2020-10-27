@@ -15,7 +15,9 @@ function Footer({ ui, count }) {
         <h2 className="currentStyleTitle">{ui.title}</h2>
       </div>
       <div className="emailContianer">
-        <h3 className="email">JohnDoe@gmail.com</h3>
+        <a href="mailto:erin@efphoto.co.nz">
+          <h3 className="email">erin@efphoto.co.nz</h3>
+        </a>
       </div>
     </motion.footer>
   );

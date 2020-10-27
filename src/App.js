@@ -19,7 +19,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [ui, setUi] = useState(UI[count]);
   const [album, setAlbum] = useLocalStorage({ id: "surf" }, "album");
-  const [albumActive, setAlbumActive] = useState(false);
+  const [albumActive, setAlbumActive] = useLocalStorage(false, "albumActive");
 
   const handleAlbumChange = (value) => {
     setAlbum(value);
@@ -37,17 +37,13 @@ function App() {
     backgroundColor: ui.bgC,
     backgroundImage: `url(${backgroundTexture})`,
     height: "100vh",
-    overflow: "hidden",
+    overflowX: "hidden",
+    overflowY: "hidden",
   };
-  const [intro, setIntro] = useLocalStorage(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIntro(false);
-    }, 3000);
-  }, [intro]);
+
   const location = useLocation();
   return (
-    <div className="background" style={bgMain}>
+    <div className="background" style={!albumActive ? bgMain : bgAlbum}>
       {" "}
       <IntroAnimation />
       <Header />

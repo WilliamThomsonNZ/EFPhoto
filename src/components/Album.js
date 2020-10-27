@@ -12,8 +12,9 @@ function Album({ album }) {
       transition={{ duration: 0.8, ease: "easeInOut" }}
       className="albumBody"
     >
-      <h2 className="albumTitle">{album.id}</h2>
       <BackButton />
+      <h2 className="albumTitle">{album.id}</h2>
+
       <div className="albumGrid">
         {album.photos.map((photo, index) => (
           <Photo url={photo.url} key={index} index={index} />
