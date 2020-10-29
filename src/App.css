@@ -14,6 +14,7 @@
   position: relative;
   font-family: "Abhaya Libre", serif;
   transition: ease all 0.5s;
+  padding-bottom: 5rem;
 }
 .overlay {
   width: 100%;
@@ -456,25 +457,15 @@ main {
   }
 }
 
-@media (max-width: 750px) {
-  .albumGrid {
-    display: block;
-    padding-bottom: 5rem;
-    height: auto;
-  }
-
-  .albumPhoto {
-    width: 100%;
-    margin: 2rem 0;
-  }
-
-  .photoModal {
-    width: 70%;
-    height: 50%;
-  }
-}
-
 @media (max-width: 768px) {
+  .background {
+    transition: all 0s ease-in-out;
+    height: 100%;
+  }
+
+  .photoCard {
+    transition: all 0s ease-in-out;
+  }
   .instaLink {
     display: none;
   }
@@ -509,12 +500,30 @@ main {
   .albumCount {
     display: none;
   }
+  .albumGrid {
+    display: block;
+    padding-bottom: 5rem;
+    height: 100%;
+  }
+
+  .albumPhoto {
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  .photoModal {
+    width: 70%;
+    height: 50%;
+  }
 }
 
 @media (max-width: 600px) {
   .currentStyleTitle {
     font-size: 10rem;
     margin-top: 7rem;
+  }
+  .albumTitle {
+    font-size: 5rem;
   }
 }
 @media (max-width: 450px) {
