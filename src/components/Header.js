@@ -5,7 +5,12 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 function Header() {
   return (
     <header>
-      <a href="https://instagram.com" className="instaLink">
+      <a
+        href="https://www.instagram.com/boo.fleming/"
+        className="instaLink"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FontAwesomeIcon icon={faInstagram} />
       </a>
       <h1 className="title">Erin Fleming Photography</h1>

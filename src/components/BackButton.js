@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function BackButton() {
   return (
     <Link to="/">
-      <button className="backButton">&larr; Back</button>
+      <button className="backButton">Back</button>
     </Link>
   );
 }

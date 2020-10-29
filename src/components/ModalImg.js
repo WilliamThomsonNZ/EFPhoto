@@ -14,19 +14,13 @@ const ModalImg = ({ url, modal }) => {
         className="photoModal"
         style={{
           backgroundImage: `url(${url})`,
-          position: "absolute",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          display: "block",
-          width: "40%",
-          height: "70%",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%,-50%)",
         }}
       ></div>
-      <div className="photoInfo"></div>
+      <div className="photoInfo">
+        <span>Location:</span>
+        <span>A600</span>
+        <span>01 05 2020</span>
+      </div>
     </div>
   );
 };

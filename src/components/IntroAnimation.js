@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { TimelineLite, TweenMax } from "gsap";
+import React, { useEffect } from "react";
+import { TimelineLite} from "gsap";
 
 function IntroAnimation() {
   var myTween = new TimelineLite({ paused: true });

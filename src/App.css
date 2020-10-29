@@ -6,11 +6,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  overflow: visible;
 }
 
 .background {
-  width: 100vw;
-
   background-repeat: repeat;
   position: relative;
   font-family: "Abhaya Libre", serif;
@@ -40,7 +39,7 @@ header {
 .title {
   font-weight: normal;
   display: inline-block;
-  margin-left: 1rem;
+
   color: #fff;
   letter-spacing: 3px;
   text-align: center;
@@ -59,6 +58,17 @@ title::after {
   width: 75px;
   height: 20px;
   position: relative;
+}
+
+.menuBox::after {
+  content: "Soon";
+  position: absolute;
+  left: -65%;
+  top: -5%;
+
+  background: #fff;
+  border-radius: 3px;
+  padding: 2px 4px;
 }
 
 .line {
@@ -111,8 +121,8 @@ footer {
   height: 2px;
   background-color: #fff;
   position: absolute;
-  right: 110%;
-  bottom: 50%;
+  right: 107%;
+  bottom: 45%;
 }
 main {
   position: absolute;
@@ -168,6 +178,7 @@ main {
 }
 .btns:focus {
   outline: none;
+  border: 1px solid #fff;
 }
 .prevBtn {
   left: 0;
@@ -219,7 +230,6 @@ main {
 }
 .photoCard {
   position: absolute;
-
   width: 100%;
   height: 110%;
   background-position: center;
@@ -263,7 +273,7 @@ main {
   height: 100vh;
   width: 100vw;
   background-color: #000;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 50;
@@ -304,15 +314,46 @@ main {
   display: none;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
 }
 /* -------------------------------------------album-------------------------------------- */
 .backButton {
+  color: #fff;
+  background: none;
+  font-weight: normal;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  transition: all 0.2s ease;
+  background: none;
+  font-family: "Abhaya Libre", serif;
+  border: none;
+  position: relative;
+}
+.backButton:focus {
+  outline: none;
+  border: 1px solid #fff;
+}
+.backButton:hover {
+  cursor: pointer;
+}
+.backButton::after {
+  content: "";
+  position: absolute;
+  right: -3.5rem;
+  background-color: #fff;
+  top: 50%;
+  height: 1px;
+  width: 3rem;
+  transition: all 0.5s ease;
+}
+.backButton:hover:after {
+  right: 4rem;
 }
 
 .albumBody {
   width: 70%;
   margin: 0 auto;
-  height: 150vh;
+  height: auto;
 }
 
 .albumTitle {
@@ -324,13 +365,16 @@ main {
   color: #f1f1f1;
   margin-bottom: 5rem;
 }
-
+.albumPhoto {
+  cursor: pointer;
+  min-height: 20rem;
+}
 .albumGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 10rem;
-  height: 100%;
+
   width: 100%;
   grid-template-areas:
     "numberZero two four"
@@ -357,4 +401,152 @@ main {
 }
 .albumPhoto5 {
   grid-area: five;
+}
+
+.photoInfo {
+  color: #fff;
+  position: absolute;
+  right: 25%;
+  top: 75%;
+}
+
+.photoInfo span {
+  display: block;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+}
+.photoModal {
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+  width: 40%;
+  height: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------------------media--------------------------------- */
+
+@media (max-width: 1920px) {
+  .albumGrid {
+    gap: 5rem;
+  }
+}
+
+@media (max-width: 1300px) {
+  .albumBody {
+    width: 85%;
+  }
+
+  .email {
+    opacity: 0;
+  }
+
+  .albumCount {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .albumGrid {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .albumGrid {
+    display: block;
+    padding-bottom: 5rem;
+    height: auto;
+  }
+
+  .albumPhoto {
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  .photoModal {
+    width: 70%;
+    height: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .instaLink {
+    display: none;
+  }
+
+  html {
+    font-size: 15px;
+  }
+  .cards {
+    width: 30%;
+    height: 50%;
+  }
+  .prevBtn {
+    left: 15%;
+  }
+  .nextBtn {
+    right: 15%;
+  }
+  .currentStyleTitle {
+    font-size: 11rem;
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+  .titleContainer {
+    width: 100%;
+  }
+
+  .email {
+    display: none;
+  }
+
+  .albumCount {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .currentStyleTitle {
+    font-size: 10rem;
+    margin-top: 7rem;
+  }
+}
+@media (max-width: 450px) {
+  .title {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+  .currentStyleTitle {
+    font-size: 5rem;
+  }
+  .cards {
+    width: 22%;
+    height: 40%;
+  }
+
+  .prevBtn {
+    left: 27%;
+  }
+  .nextBtn {
+    right: 27%;
+  }
+
+  .prevBtn::after,
+  .nextBtn::after {
+    width: 1.5rem;
+  }
+
+  .prevBtn::after {
+    right: -50%;
+  }
+
+  .nextBtn::after {
+    left: -50%;
+  }
 }
