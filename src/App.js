@@ -29,7 +29,6 @@ function App() {
   const bgAlbum = {
     backgroundColor: ui.bgC,
     backgroundImage: `url(${backgroundTexture})`,
-
     overflowX: "hidden",
     overflowY: "show",
   };

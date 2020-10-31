@@ -1,4 +1,4 @@
-import React from "react";
+
 import { SnowArray } from "../photos/SnowArray";
 
 export const AlbumType = [
